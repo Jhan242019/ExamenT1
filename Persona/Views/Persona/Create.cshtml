@@ -1,0 +1,92 @@
+﻿@{
+    var persona = (Personas)Model;
+}
+
+<h1>Registrar una Persona</h1>
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <form action="/persona/create" method="post">
+            <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" required name="Nombre" value="@persona.Nombre" max="2"/>
+                @Html.ValidationMessage("Nombre")
+            </div>
+
+            <div class="form-group">
+                <label>Apellido</label>
+                <input type="text" class="form-control" required name="Apellido" value="@persona.Apellido" />
+                @Html.ValidationMessage("Apellido")
+            </div>
+
+            <div class="form-group">
+                <label>Fecha de Nacimiento</label>
+                <input type="date" class="form-control" required name="FechaNac" value="@persona.FechaNac" />
+                @Html.ValidationMessage("FechaNac")
+            </div>
+
+            <div class="form-group">
+                <label>DNI</label>
+                <input type="text" maxlength="8" class="form-control" required name="Dni" value="@persona.Dni" />
+                @Html.ValidationMessage("Dni")
+            </div>
+
+            <div class="form-group">
+                <label>Genero</label>
+                <select class="form-control" name="Genero">
+                    <option value="">Seleccione su Género</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
+                @Html.ValidationMessage("Genero")
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Ciudad</label>
+
+                <select class="form-control" name="Ciudad">
+                    <option value="">Seleccione Ciudad</option>
+                    @foreach (var item in ViewBag.Ciudades)
+                    {
+                        if (item.Id == Model.Ciudad)
+                        {
+                            <option selected value="@item.Id"> @item.Nombre</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id"> @item.Nombre</option>
+                        }
+                    }
+                </select>
+                @Html.ValidationMessage("Ciudad")
+            </div>
+
+            <div class="form-group">
+                <label>Direccion</label>
+                <input type="text" class="form-control" maxlength="50" min="2" required name="Direccion" value="@persona.Direccion" />
+                @Html.ValidationMessage("Direccion")
+            </div>
+
+            <div class="form-group">
+                <label>Correo</label>
+                <input type="email" class="form-control" required name="Correo" value="@persona.Correo" />
+                @Html.ValidationMessage("Correo")
+            </div>
+
+            <div class="form-group">
+                <label>Nombre de Usuario</label>
+                <input type="text" class="form-control" required name="UserName" value="@persona.UserName" style="        text-transform: lowercase;"/>
+                @Html.ValidationMessage("UserName")
+            </div>
+
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="text" maxlength="6" class="form-control" required name="Contrasena" value="@persona.Contrasena" />
+                @Html.ValidationMessage("Contrasena")
+            </div>
+
+            <button class="btn btn-primary">Registrar</button>
+
+        </form>
+    </div>
+</div>
